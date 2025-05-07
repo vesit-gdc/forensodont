@@ -1,17 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:forensodont/pages/credentials/login.dart';
+import 'package:forensodont/pages/credentials/register.dart';
+import 'package:forensodont/pages/home.dart';
+import 'package:forensodont/pages/landingpage.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
   ));
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(const MyApp());
 }
 
@@ -25,6 +29,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Color(0xFFA7D3DE),
       ),
+      routes: {
+        LandingPage.id : (context) => LandingPage(),
+        HomePage.id : (context) => HomePage(),
+        LoginPage.id : (context) => LoginPage(),
+        RegisterPage.id : (context) => RegisterPage()
+      },
+      initialRoute: LandingPage.id,
     );
   }
 }
