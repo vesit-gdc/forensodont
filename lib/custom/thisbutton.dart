@@ -15,6 +15,13 @@ class CustomButton extends StatelessWidget {
         width: 300,
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(50),
+              blurRadius: 6.0,
+              offset: Offset(0, 2),
+            )
+          ],
           gradient: LinearGradient(
             colors: [Colors.purple, Colors.deepPurple],
             begin: Alignment.topLeft,

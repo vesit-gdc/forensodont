@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:forensodont/pages/credentials/authgate.dart';
+import 'package:forensodont/pages/credentials/details.dart';
 import 'package:forensodont/pages/credentials/login.dart';
 import 'package:forensodont/pages/credentials/register.dart';
 import 'package:forensodont/pages/home.dart';
@@ -12,7 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
   ));
@@ -27,15 +29,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Color(0xFFA7D3DE),
+        scaffoldBackgroundColor: const Color(0xFFA7D3DE),
       ),
       routes: {
-        LandingPage.id : (context) => LandingPage(),
-        HomePage.id : (context) => HomePage(),
-        LoginPage.id : (context) => LoginPage(),
-        RegisterPage.id : (context) => RegisterPage()
+        AuthGate.id: (context) => const AuthGate(),
+        LandingPage.id: (context) => const LandingPage(),
+        HomePage.id: (context) => const HomePage(),
+        LoginPage.id: (context) => const LoginPage(),
+        RegisterPage.id: (context) => const RegisterPage(),
+        RegistrationDetailsPage.id : (context) => const RegistrationDetailsPage()
       },
-      initialRoute: LandingPage.id,
+      initialRoute: AuthGate.id,
     );
   }
 }

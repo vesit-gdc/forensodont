@@ -8,6 +8,7 @@ class Navbar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
       child: Container(
+        height: 70,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30),

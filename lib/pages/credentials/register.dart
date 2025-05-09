@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../custom/mytextfield.dart';
 import '../../custom/thisbutton.dart';
+import '../home.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -31,7 +32,7 @@ class RegisterPageState extends State<RegisterPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Registration Successful!")),
         );
-        Navigator.pushNamed(context, 'det');
+        Navigator.pushNamed(context, HomePage.id);
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Registration Failed: ${e.toString()}")),
