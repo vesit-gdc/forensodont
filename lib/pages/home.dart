@@ -111,7 +111,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: Navbar()
+        bottomNavigationBar: Navbar(initialIndex: 1,)
     );
   }
 }

@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:forensodont/pages/about.dart';
 import 'package:forensodont/pages/credentials/authgate.dart';
 import 'package:forensodont/pages/credentials/details.dart';
 import 'package:forensodont/pages/credentials/login.dart';
 import 'package:forensodont/pages/credentials/register.dart';
 import 'package:forensodont/pages/home.dart';
 import 'package:forensodont/pages/landingpage.dart';
+import 'package:forensodont/pages/profile.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -37,7 +39,9 @@ class MyApp extends StatelessWidget {
         HomePage.id: (context) => const HomePage(),
         LoginPage.id: (context) => const LoginPage(),
         RegisterPage.id: (context) => const RegisterPage(),
-        RegistrationDetailsPage.id : (context) => const RegistrationDetailsPage()
+        RegistrationDetailsPage.id : (context) => const RegistrationDetailsPage(),
+        ProfilePage.id : (context) => const ProfilePage(),
+        About.id : (context) => const About()
       },
       initialRoute: AuthGate.id,
     );

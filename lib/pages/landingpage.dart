@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:forensodont/pages/credentials/login.dart';
 import 'package:forensodont/pages/credentials/register.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../custom/constants.dart';
 import '../custom/thisButton.dart';
 
 class LandingPage extends StatelessWidget {
@@ -67,6 +68,7 @@ class LandingPage extends StatelessWidget {
                   CustomButton(text: 'I have an Account', onPressed: () {
                     Navigator.pushNamed(context, LoginPage.id);
                   }),
+                  line(Colors.black),
                   CustomButton(text: 'Create a New Account', onPressed: () {
                     Navigator.pushNamed(context, RegisterPage.id);
                   }),

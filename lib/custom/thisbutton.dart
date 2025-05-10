@@ -12,14 +12,15 @@ class CustomButton extends StatelessWidget {
       onTap: onPressed,
       borderRadius: BorderRadius.circular(30),
       child: Container(
-        width: 300,
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+        width: 270,
+        height: 50,
+        padding: EdgeInsets.symmetric(horizontal: 30),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha(50),
+              color: Colors.grey.shade600,
               blurRadius: 6.0,
-              offset: Offset(0, 2),
+              offset: Offset(0, 3),
             )
           ],
           gradient: LinearGradient(
@@ -34,7 +35,7 @@ class CustomButton extends StatelessWidget {
             text,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 17,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
             ),
