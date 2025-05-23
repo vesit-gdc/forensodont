@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:forensodont/custom/constants.dart';
 import 'package:forensodont/custom/navbar.dart';
+import 'package:forensodont/pages/dental_examination.dart';
+import 'package:forensodont/pages/patient_records.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../custom/homecard.dart';
@@ -12,6 +14,13 @@ class HomePage extends StatelessWidget {
 
   Future<void> _launchSheet() async {
     final Uri url = Uri.parse(sheetLink);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Future<void> _launchForm() async {
+    final Uri url = Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLSdTmcnt4Q8VOlgkB8wZ8zHH5AZfDs9Ug2SySry04jCXC2LSmQ/viewform?usp=header');
     if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
       throw 'Could not launch $url';
     }
@@ -67,7 +76,7 @@ class HomePage extends StatelessWidget {
                         label: 'Dental\nExamination',
                         color: cardColor,
                         iconColor: iconColor,
-                        onTap: () => Navigator.pushNamed(context, 'data'),
+                        onTap: () => Navigator.pushNamed(context, DentalExamination.id),
                       ),
                       HomeCard(
                         icon: Icons.folder_shared,
@@ -77,29 +86,29 @@ class HomePage extends StatelessWidget {
                         onTap: () => _launchSheet(),
                       ),
                       HomeCard(
-                        icon: Icons.upload_file,
+                        icon: Icons.upload_file_rounded,
                         label: 'Extract\nRecords',
                         color: cardColor,
                         iconColor: iconColor,
-                        onTap: () => Navigator.pushNamed(context, 'rec'),
+                        onTap: () => Navigator.pushNamed(context, Records.id),
                       ),
                       HomeCard(
-                        icon: Icons.search,
+                        icon: Icons.person_search_rounded,
                         label: 'Forensic\nMatching',
                         color: cardColor,
                         iconColor: iconColor,
                         onTap: () => Navigator.pushNamed(context, 'add'),
                       ),
                       HomeCard(
-                        icon: Icons.feedback_outlined,
+                        icon: Icons.feedback,
                         label: 'Feedback',
                         color: cardColor,
                         iconColor: iconColor,
-                        onTap: () => Navigator.pushNamed(context, 'sel'),
+                        onTap: () => _launchForm(),
                       ),
                       HomeCard(
-                        icon: Icons.history_edu,
-                        label: 'Antemortem',
+                        icon: Icons.assessment,
+                        label: 'Postmortem',
                         color: cardColor,
                         iconColor: iconColor,
                         onTap: () => Navigator.pushNamed(context, 'grid'),

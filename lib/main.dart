@@ -6,8 +6,10 @@ import 'package:forensodont/pages/credentials/authgate.dart';
 import 'package:forensodont/pages/credentials/details.dart';
 import 'package:forensodont/pages/credentials/login.dart';
 import 'package:forensodont/pages/credentials/register.dart';
+import 'package:forensodont/pages/dental_examination.dart';
 import 'package:forensodont/pages/home.dart';
 import 'package:forensodont/pages/landingpage.dart';
+import 'package:forensodont/pages/patient_records.dart';
 import 'package:forensodont/pages/profile.dart';
 import 'firebase_options.dart';
 
@@ -34,6 +36,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFA7D3DE),
       ),
       routes: {
+        Records.id: (context) => const Records(),
+        DentalExamination.id : (context) => const DentalExamination(),
         AuthGate.id: (context) => const AuthGate(),
         LandingPage.id: (context) => const LandingPage(),
         HomePage.id: (context) => const HomePage(),

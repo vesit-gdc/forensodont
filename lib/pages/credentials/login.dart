@@ -19,15 +19,20 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  bool _isLoading = false;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<void> _validateAndLogin() async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
       try {
         UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
@@ -37,6 +42,12 @@ class LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Login Failed: ${e.toString()}")),
         );
+      } finally {
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
     }
   }
@@ -162,8 +173,12 @@ class LoginPageState extends State<LoginPage> {
                               child: Text('Forgot Password?')),
                         ),
                         const SizedBox(height: 7),
-                        CustomButton(
-                            text: "Login", onPressed: _validateAndLogin),
+                        _isLoading
+                            ? const Center(child: CircularProgressIndicator())
+                            : CustomButton(
+                          text: "Login",
+                          onPressed: _validateAndLogin,
+                        ),
                         SizedBox(height: 25),
                         Text('Or'),
                         SizedBox(height: 20),

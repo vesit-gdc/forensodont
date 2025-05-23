@@ -79,14 +79,16 @@ class _AuthGateState extends State<AuthGate> {
 
       if (_isAuthenticated) {
         if (!mounted) return;
-        if(isUserLoggedIn())
-          {
-            Navigator.pushNamed(context, HomePage.id);
-          }
-        else
-          {
-            Navigator.pushNamed(context, LandingPage.id);
-          }
+        if(isUserLoggedIn()) {
+          Navigator.pushNamed(context, HomePage.id);
+        } else {
+          Navigator.pushNamed(context, LandingPage.id);
+        }
+      } else {
+        // Authentication was cancelled - show PIN pad
+        setState(() {
+          _showPinPad = true;
+        });
       }
     } on PlatformException catch (e) {
       setState(() {
@@ -182,38 +184,56 @@ class _AuthGateState extends State<AuthGate> {
             else if (_showPinPad)
               _buildPinPad()
             else if (_authError.isNotEmpty)
-              Column(
-                children: [
-                  Text(
-                    _authError,
-                    style: const TextStyle(color: Colors.red),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                Column(
+                  children: [
+                    Text(
+                      _authError,
+                      style: const TextStyle(color: Colors.red),
+                      textAlign: TextAlign.center,
                     ),
-                    onPressed: _authenticate,
-                    child: const Text(
-                      'Try Biometric Again',
-                      style: TextStyle(color: Color(0xFFA7D3DE)),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      onPressed: _authenticate,
+                      child: const Text(
+                        'Try Biometric Again',
+                        style: TextStyle(color: Color(0xFFA7D3DE)),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: _switchToPinAuth,
-                    child: const Text(
-                      'Use PIN Instead',
-                      style: TextStyle(color: Colors.white),
+                    TextButton(
+                      onPressed: _switchToPinAuth,
+                      child: const Text(
+                        'Use PIN Instead',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                ],
-              )
-            else
-              const Text(
-                'Authenticating...',
-                style: TextStyle(color: Colors.white),
-              ),
+                  ],
+                )
+              else
+                Column(
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                      ),
+                      onPressed: _authenticate,
+                      child: const Text(
+                        'Start Biometric Authentication',
+                        style: TextStyle(color: Color(0xFFA7D3DE)),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    TextButton(
+                      onPressed: _switchToPinAuth,
+                      child: const Text(
+                        'Use PIN Instead',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
           ],
         ),
       ),
